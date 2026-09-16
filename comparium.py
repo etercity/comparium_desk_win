@@ -1,9 +1,9 @@
 # from tkinter import *
 # from tkinter import ttk
-# from ttkthemes import ThemedTk
+from selenium.webdriver.common.by import By
+from ttkthemes import ThemedTk
 import tkinter as tk
 from tkinter import ttk
-import sv_ttk
 import requests
 from tkinter import messagebox
 from selenium.webdriver import Firefox
@@ -92,7 +92,7 @@ def get_screen(browser, opts, txt):
     print('Delay 2 s')
     display(txt='Delay 2s...')
     time.sleep(2)
-    browser.find_element_by_tag_name('body').screenshot(f"screenshot_from_{txt}.png")
+    browser.find_element(By.TAG_NAME, 'body').screenshot(f"screenshot_from_{txt}.png")
     print('Make screenshot and save it')
     display(txt='Make screenshot and save it')
     browser.close()
@@ -136,10 +136,7 @@ def close():
 
 
 #root = ThemedTk(theme="arc")
-root = tk.Tk()
-sv_ttk.set_theme("light") # Применит красивую светлую тему, совместимую с Tk 9.0
-
-
+root = ThemedTk(theme="arc")
 # Get resolution current monitor
 h_display = (root.winfo_screenheight())/4
 w_display = (root.winfo_screenwidth())/3

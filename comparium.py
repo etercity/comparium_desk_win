@@ -1,6 +1,9 @@
-from tkinter import *
+# from tkinter import *
+# from tkinter import ttk
+# from ttkthemes import ThemedTk
+import tkinter as tk
 from tkinter import ttk
-from ttkthemes import ThemedTk
+import sv_ttk
 import requests
 from tkinter import messagebox
 from selenium.webdriver import Firefox
@@ -104,27 +107,27 @@ def get_screen(browser, opts, txt):
 
 
 def get_resolution(width):
-    entry_width.delete(0, END)
-    entry_width.insert(END, width)
+    entry_width.delete(0, tk.END)
+    entry_width.insert(tk.END, width)
 
 
 def reset_configs():
-    entry_width.delete(0, END)
+    entry_width.delete(0, tk.END)
     entry_width.insert(0, 1024)
-    tested_url.delete(0, END)
+    tested_url.delete(0, tk.END)
     txt = 'Please enter a valid URL, choose at least one width, and click button FireFox or Chrome...'
     display_clean()
     display(txt)
 
 
 def display(txt):
-    mess.insert(END, txt+'\n')
+    mess.insert(tk.END, txt+'\n')
     mess.see("end")
     mess.update()
 
 
 def display_clean():
-    mess.delete(0.0, END)
+    mess.delete(0.0, tk.END)
 
 
 def close():
@@ -132,7 +135,10 @@ def close():
     root.quit()
 
 
-root = ThemedTk(theme="arc")
+#root = ThemedTk(theme="arc")
+root = tk.Tk()
+sv_ttk.set_theme("light") # Применит красивую светлую тему, совместимую с Tk 9.0
+
 
 # Get resolution current monitor
 h_display = (root.winfo_screenheight())/4
@@ -143,21 +149,21 @@ root.resizable(0, 0)
 root.title('Comparium')
 root.iconbitmap('./images/favicon.ico')
 
-f_menu = Frame(root, bg="#2A303A", height=40)
-f_text = Frame(root)
-f_menu.pack(fill=X)
+f_menu = tk.Frame(root, bg="#2A303A", height=40)
+f_text = tk.Frame(root)
+f_menu.pack(fill=tk.X)
 f_text.pack(expand=1)
-l_menu = Label(text="Automated testing tool", bg="#2A303A", fg="#C6DEC1", font="Arial 18")
+l_menu = tk.Label(text="Automated testing tool", bg="#2A303A", fg="#C6DEC1", font="Arial 18")
 l_menu.place(relx=0.24, y=5)
 # Set background
-img = PhotoImage(file='./images/pattern.png')
-l_logo = Label(root, image=img, bg="#3772D6", fg="#C6DEC1")
+img = tk.PhotoImage(file='./images/pattern.png')
+l_logo = tk.Label(root, image=img, bg="#3772D6", fg="#C6DEC1")
 l_logo.pack()
 
 # top_frame = ttk.Frame(root)
 tested_url = ttk.Entry()
 tested_url.place(relx=0.35, rely=0.12, relwidth=0.6, relheight=0.1)
-url_label = Label(text="Tested URL:", font="Arial 12 bold")
+url_label = tk.Label(text="Tested URL:", font="Arial 12 bold")
 url_label.place(relx=0.05, rely=0.12, relwidth=0.285, relheight=0.1)
 
 width_frame = ttk.Frame(root)
@@ -165,79 +171,79 @@ width_frame.place(relx=0.45, rely=0.4, relwidth=0.2, relheight=0.05, anchor='n')
 entry_width = ttk.Entry()
 entry_width.place(relx=0.56, relwidth=0.1, rely=0.4, relheight=0.05)
 entry_width.insert(0, 1024)
-entry_label = Label(width_frame, text="Browser width:   ", font="Arial 8 bold")
+entry_label = tk.Label(width_frame, text="Browser width:   ", font="Arial 8 bold")
 entry_label.grid()
-entry_px = Label(text="(px)", font="Arial 8 bold")
+entry_px = tk.Label(text="(px)", font="Arial 8 bold")
 entry_px.place(relx=0.67, rely=0.4, relwidth=0.05, relheight=0.05)
 
 # Buttons init
-img_btn_1 = PhotoImage(file='./images/FF_logo.png')
+img_btn_1 = tk.PhotoImage(file='./images/FF_logo.png')
 # Resizing image to fit on button
 img_btn_1 = img_btn_1.subsample(5, 5)
-img_btn_2 = PhotoImage(file='./images/Chrome_logo.png')
+img_btn_2 = tk.PhotoImage(file='./images/Chrome_logo.png')
 # Resizing image to fit on button
 img_btn_2 = img_btn_2.subsample(4, 4)
-img_btn_3 = PhotoImage(file='./images/reset.png')
+img_btn_3 = tk.PhotoImage(file='./images/reset.png')
 # # Resizing image to fit on button
 img_btn_3 = img_btn_3.subsample(8, 8)
-img_btn_width_1 = PhotoImage(file='./images/320.png')
+img_btn_width_1 = tk.PhotoImage(file='./images/320.png')
 # Resizing image to fit on button
 img_btn_width_1 = img_btn_width_1.subsample(2, 2)
-img_btn_width_2 = PhotoImage(file='./images/375.png')
+img_btn_width_2 = tk.PhotoImage(file='./images/375.png')
 # Resizing image to fit on button
 img_btn_width_2 = img_btn_width_2.subsample(2, 2)
-img_btn_width_3 = PhotoImage(file='./images/414.png')
+img_btn_width_3 = tk.PhotoImage(file='./images/414.png')
 # Resizing image to fit on button
 img_btn_width_3 = img_btn_width_3.subsample(2, 2)
-img_btn_width_4 = PhotoImage(file='./images/1024.png')
+img_btn_width_4 = tk.PhotoImage(file='./images/1024.png')
 # Resizing image to fit on button
 img_btn_width_4 = img_btn_width_4.subsample(2, 2)
-img_btn_width_5 = PhotoImage(file='./images/1112.png')
+img_btn_width_5 = tk.PhotoImage(file='./images/1112.png')
 # Resizing image to fit on button
 img_btn_width_5 = img_btn_width_5.subsample(2, 2)
-img_btn_width_6 = PhotoImage(file='./images/1366.png')
+img_btn_width_6 = tk.PhotoImage(file='./images/1366.png')
 # Resizing image to fit on button
 img_btn_width_6 = img_btn_width_6.subsample(2, 2)
-img_btn_width_7 = PhotoImage(file='./images/1920.png')
+img_btn_width_7 = tk.PhotoImage(file='./images/1920.png')
 # Resizing image to fit on button
 img_btn_width_7 = img_btn_width_7.subsample(1, 1)
-button = ttk.Button(root, text="FireFox", command=lambda: get_screen(browser=Firefox, opts=opts_ff, txt='FireFox'), image=img_btn_1, compound=LEFT)
+button = ttk.Button(root, text="FireFox", command=lambda: get_screen(browser=Firefox, opts=opts_ff, txt='FireFox'), image=img_btn_1, compound=tk.LEFT)
 button.place(relx=0.63, rely=0.25, relwidth=0.2, relheight=0.1, anchor='n')
-button = ttk.Button(root, text="Chrome", command=lambda: get_screen(browser=Chrome, opts=opts_chrome, txt='Chrome'), image=img_btn_2, compound=LEFT)
+button = ttk.Button(root, text="Chrome", command=lambda: get_screen(browser=Chrome, opts=opts_chrome, txt='Chrome'), image=img_btn_2, compound=tk.LEFT)
 button.place(relx=0.85, rely=0.25, relwidth=0.2, relheight=0.1, anchor='n')
 button = ttk.Button(root, command=reset_configs, image=img_btn_3)
 button.place(relx=0.425, rely=0.25, relwidth=0.15, relheight=0.1, anchor='n')
-button = ttk.Button(root, text="320 px", command=lambda: get_resolution(320), image=img_btn_width_1, compound=LEFT)
+button = ttk.Button(root, text="320 px", command=lambda: get_resolution(320), image=img_btn_width_1, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.25, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="375 px", command=lambda: get_resolution(375), image=img_btn_width_2, compound=LEFT)
+button = ttk.Button(root, text="375 px", command=lambda: get_resolution(375), image=img_btn_width_2, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.335, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="414 px", command=lambda: get_resolution(414), image=img_btn_width_3, compound=LEFT)
+button = ttk.Button(root, text="414 px", command=lambda: get_resolution(414), image=img_btn_width_3, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.42, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="1024  px", command=lambda: get_resolution(1024), image=img_btn_width_4, compound=LEFT)
+button = ttk.Button(root, text="1024  px", command=lambda: get_resolution(1024), image=img_btn_width_4, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.505, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="1112 px", command=lambda: get_resolution(1112), image=img_btn_width_5, compound=LEFT)
+button = ttk.Button(root, text="1112 px", command=lambda: get_resolution(1112), image=img_btn_width_5, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.59, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="1366 px", command=lambda: get_resolution(1366), image=img_btn_width_6, compound=LEFT)
+button = ttk.Button(root, text="1366 px", command=lambda: get_resolution(1366), image=img_btn_width_6, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.675, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="1440 px", command=lambda: get_resolution(1440), image=img_btn_width_7, compound=LEFT)
+button = ttk.Button(root, text="1440 px", command=lambda: get_resolution(1440), image=img_btn_width_7, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.76, relwidth=0.2, relheight=0.075, anchor='n')
-button = ttk.Button(root, text="1920 px", command=lambda: get_resolution(1920), image=img_btn_width_7, compound=LEFT)
+button = ttk.Button(root, text="1920 px", command=lambda: get_resolution(1920), image=img_btn_width_7, compound=tk.LEFT)
 button.place(relx=0.15, rely=0.845, relwidth=0.2, relheight=0.075, anchor='n')
 
 # Настраиваем вывод консольных сообщений в область Text()
-f_text = Label()
+f_text = tk.Label()
 f_text.place(relx=0.35, rely=0.48, relwidth=0.6, relheight=0.4)
-mess = Text(f_text, bg="#2A303A", fg='#00FF00', padx=4, pady=3, wrap=WORD, insertbackground="#EDA756",
+mess = tk.Text(f_text, bg="#2A303A", fg='#00FF00', padx=4, pady=3, wrap=tk.WORD, insertbackground="#EDA756",
          selectbackground="#4E5A65", width=1, spacing3=1)
-mess.pack(fill=BOTH, expand=1, side=LEFT)
-scroll = Scrollbar(f_text, command=mess.yview)
-scroll.pack(fill=Y, side=LEFT)
+mess.pack(fill=tk.BOTH, expand=1, side=tk.LEFT)
+scroll = tk.Scrollbar(f_text, command=mess.yview)
+scroll.pack(fill=tk.Y, side=tk.LEFT)
 mess.config(yscrollcommand=scroll.set)
 
 # Set footer and link
-link_label = Label(root, text="Visit our website: ", bg='#3772D6', font="Arial 10")
+link_label = tk.Label(root, text="Visit our website: ", bg='#3772D6', font="Arial 10")
 link_label.place(relx=0.42, rely=0.92)
-link = Label(root, text="www.comparium.app", font="Arial 10", bg='#3772D6', fg="blue", cursor="hand2")
+link = tk.Label(root, text="www.comparium.app", font="Arial 10", bg='#3772D6', fg="blue", cursor="hand2")
 link.place(relx=0.63, rely=0.92)
 link.bind("<Button-1>", lambda event: webbrowser.open(link.cget("text")))
 
